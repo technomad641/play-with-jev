@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 372" width="880" height="372" role="img" aria-label="Jev answers in three shapes: a noul gives a yes-or-no as a probability, a choice picks one of your labels with a probability for each, and a score places the answer on a scale you described.">
+  <rect x="0" y="0" width="880" height="372" rx="14" fill="#0d1117"/>
+
+  <text x="28" y="38" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="600" fill="#e6edf3">You do not get a sentence. You get one of these three.</text>
+  <text x="28" y="58" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12.5" fill="#8b949e">You choose the shape when you ask. Jev can only answer inside it.</text>
+
+  <!-- ============ NOUL ============ -->
+  <rect x="20" y="78" width="269" height="236" rx="10" fill="#161b22" stroke="#30363d"/>
+  <text x="40" y="106" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#58a6ff">Noul</text>
+  <text x="40" y="126" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#8b949e">is this true? &#8212; as a probability</text>
+  <line x1="40" y1="140" x2="269" y2="140" stroke="#30363d"/>
+  <text x="40" y="162" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681">you ask</text>
+  <text x="40" y="180" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="#c9d1d9">"Is this customer angry?"</text>
+
+  <text x="40" y="232" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#58a6ff">0.87</text>
+  <text x="120" y="232" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e">probably yes</text>
+
+  <rect x="40" y="258" width="229" height="10" rx="5" fill="#21262d"/>
+  <rect x="40" y="258" width="0" height="10" rx="5" fill="#58a6ff">
+    <animate attributeName="width" values="0;0;199;199;0;0" keyTimes="0;0.0667;0.2333;0.9;0.9667;1" dur="6s" repeatCount="indefinite"/>
+  </rect>
+  <text x="40" y="286" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#6e7681">0.0 definitely no</text>
+  <text x="269" y="286" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#6e7681">definitely yes 1.0</text>
+
+  <!-- ============ CHOICE ============ -->
+  <rect x="305" y="78" width="269" height="236" rx="10" fill="#161b22" stroke="#30363d"/>
+  <text x="325" y="106" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#58a6ff">Choice</text>
+  <text x="325" y="126" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#8b949e">which one? &#8212; picks from your list</text>
+  <line x1="325" y1="140" x2="554" y2="140" stroke="#30363d"/>
+  <text x="325" y="162" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681">you ask</text>
+  <text x="325" y="180" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="#c9d1d9">"Which queue?"</text>
+
+  <g font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11.5">
+    <text x="325" y="216" font-weight="600" fill="#e6edf3">billing</text>
+    <rect x="397" y="207" width="124" height="11" rx="5" fill="#21262d"/>
+    <rect x="397" y="207" width="0" height="11" rx="5" fill="#58a6ff">
+      <animate attributeName="width" values="0;0;117;117;0;0" keyTimes="0;0.0667;0.2333;0.9;0.9667;1" dur="6s" repeatCount="indefinite"/>
+    </rect>
+    <text x="554" y="216" text-anchor="end" font-weight="600" fill="#58a6ff">0.94</text>
+
+    <text x="325" y="248" fill="#8b949e">technical</text>
+    <rect x="397" y="239" width="124" height="11" rx="5" fill="#21262d"/>
+    <rect x="397" y="239" width="0" height="11" rx="5" fill="#6e7681">
+      <animate attributeName="width" values="0;0;5;5;0;0" keyTimes="0;0.0667;0.2333;0.9;0.9667;1" dur="6s" repeatCount="indefinite"/>
+    </rect>
+    <text x="554" y="248" text-anchor="end" fill="#8b949e">0.04</text>
+
+    <text x="325" y="280" fill="#8b949e">other</text>
+    <rect x="397" y="271" width="124" height="11" rx="5" fill="#21262d"/>
+    <rect x="397" y="271" width="0" height="11" rx="5" fill="#6e7681">
+      <animate attributeName="width" values="0;0;2;2;0;0" keyTimes="0;0.0667;0.2333;0.9;0.9667;1" dur="6s" repeatCount="indefinite"/>
+    </rect>
+    <text x="554" y="280" text-anchor="end" fill="#8b949e">0.02</text>
+  </g>
+  <text x="325" y="302" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#6e7681">it can never invent a fourth option</text>
+
+  <!-- ============ SCORE ============ -->
+  <rect x="590" y="78" width="269" height="236" rx="10" fill="#161b22" stroke="#30363d"/>
+  <text x="610" y="106" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#58a6ff">Score</text>
+  <text x="610" y="126" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#8b949e">how much? &#8212; on a scale you wrote</text>
+  <line x1="610" y1="140" x2="839" y2="140" stroke="#30363d"/>
+  <text x="610" y="162" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681">you ask</text>
+  <text x="610" y="180" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="#c9d1d9">"How urgent is this?"</text>
+
+  <text x="610" y="232" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#58a6ff">2.4</text>
+  <text x="672" y="232" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e">between "soon" and "now"</text>
+
+  <rect x="610" y="259" width="229" height="8" rx="4" fill="#21262d"/>
+  <rect x="610" y="259" width="0" height="8" rx="4" fill="#58a6ff">
+    <animate attributeName="width" values="0;0;183;183;0;0" keyTimes="0;0.0667;0.2333;0.9;0.9667;1" dur="6s" repeatCount="indefinite"/>
+  </rect>
+  <circle cx="610" cy="263" r="6" fill="#58a6ff" stroke="#0d1117" stroke-width="2">
+    <animate attributeName="cx" values="610;610;793;793;610;610" keyTimes="0;0.0667;0.2333;0.9;0.9667;1" dur="6s" repeatCount="indefinite"/>
+  </circle>
+  <g font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#6e7681">
+    <text x="610" y="286">0 none</text>
+    <text x="686" y="286">1 minor</text>
+    <text x="762" y="286">2 soon</text>
+    <text x="839" y="286" text-anchor="end">3 now</text>
+  </g>
+  <text x="610" y="302" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#6e7681">you write what each level means</text>
+
+  <text x="28" y="344" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e">Every answer arrives with its probabilities, so your code can tell a confident call from a coin flip &#8212; and route the coin flips to a human.</text>
+</svg>
