@@ -245,13 +245,26 @@ the Vercel AI Gateway, Pydantic AI, and LiteLLM.
 
 | Path | What it is |
 |---|---|
-| `src/jevscan/` | A working example: finds posts about Jev in an X account, using Jev to judge them |
-| `docs/jevscan.md` | How that example works and how to run it |
+| `src/jevsnake/` | **Snake, with Jev choosing every turn** — one decision per tick. Start here. |
+| `src/jevscan/` | Finds posts about Jev in an X account, using Jev to judge which ones count |
+| `docs/jevsnake.md` | How the game works, and why plain code beats it |
+| `docs/jevscan.md` | How the scanner works and how to run it |
 | `docs/*.svg` | The diagrams above, hand-written and animated |
 
-The example is deliberately small and exists to be read. It shows the pattern this whole README is
-about: code does the fetching and the thresholds, Jev makes the one judgment code can't — telling
-posts about *this* Jev apart from posts about the rapper, the YouTuber, and everyone else named Jev.
+Both examples are small and exist to be read. They show the two halves of the pattern:
+
+- **`jevsnake`** puts Jev in a real-time control loop and shows you the latency. It also shows the
+  typed-answer trick at its cleanest — the bot picks `left`/`straight`/`right`, so an illegal
+  180° turn is not representable in the answer. Plain code plays it better, and the docs say so;
+  the point is the loop, not the strategy.
+- **`jevscan`** is the case that actually needs a model: code does the fetching and the thresholds,
+  Jev makes the one judgment code can't — telling posts about *this* Jev apart from posts about
+  the rapper, the YouTuber, and everyone else named Jev.
+
+```bash
+jevsnake --brain greedy     # no API key needed — see the game run right now
+jevsnake                    # Jev drives
+```
 
 ---
 
