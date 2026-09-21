@@ -44,10 +44,19 @@ judgments an app makes. "Is this spam?" "Which team gets this ticket?" "Is this 
 
 Those are snap judgments. You don't need an essayist for them. That's the gap Jev is built for.
 
-> **TypeSafe calls this class of model a "System One model."** Jev is their first one, and it launched
-> on 15 September 2026. Their pitch: for these small decisions it's roughly **40–200× faster and
-> 40–400× cheaper** than a frontier LLM. *(Those are the vendor's published numbers — worth measuring
-> on your own data before you bet on them.)*
+> **TypeSafe calls this class of model a "System One model."** Jev is their first one, and it
+> launched on 15 September 2026.
+
+And the reason anyone cares is the bill:
+
+![Jev's speed and cost versus a frontier LLM, as published by TypeSafe](docs/speed-and-cost.svg)
+
+Read those bars with one eye open. They're **ranges**, because the claim is a range — and they're
+TypeSafe's own numbers, not an independent benchmark. What they describe is a small decision, the
+kind an LLM is overqualified for. Nobody is claiming Jev writes a better email.
+
+But if your app makes a thousand of these judgments an hour, even the bottom of that range changes
+what you can afford to build.
 
 ---
 
