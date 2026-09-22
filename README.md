@@ -262,9 +262,13 @@ Both examples are small and exist to be read. They show the two halves of the pa
   the rapper, the YouTuber, and everyone else named Jev.
 
 ```bash
-jevsnake --brain greedy     # no API key needed — see the game run right now
+jevsnake --brain human      # play it yourself — arrow keys, no API key needed
+jevsnake --brain greedy     # watch plain code play it
 jevsnake                    # Jev drives
 ```
+
+Play a round by hand first. A score of your own is the only baseline that will mean anything when
+you watch the bots.
 
 ---
 

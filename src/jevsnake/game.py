@@ -43,6 +43,7 @@ class View:
     moves: dict[Turn, MoveInfo]
     food_distance: int
     length: int
+    heading: Cell
 
     def safe_turns(self) -> list[Turn]:
         return [t for t in TURNS if not self.moves[t].is_fatal]
@@ -119,7 +120,12 @@ class Game:
                 open_space=self._open_space(target, body_after),
                 toward_food=_distance(target, self.food) < _distance(self.head, self.food),
             )
-        return View(moves=moves, food_distance=_distance(self.head, self.food), length=len(self.snake))
+        return View(
+            moves=moves,
+            food_distance=_distance(self.head, self.food),
+            length=len(self.snake),
+            heading=self.direction,
+        )
 
     def step(self, turn: Turn) -> None:
         if not self.alive:

@@ -6,6 +6,7 @@ from jevsnake.game import Game
 
 HEAD, BODY, FOOD, DIM, RESET = "\033[38;5;45m", "\033[38;5;32m", "\033[38;5;214m", "\033[38;5;244m", "\033[0m"
 HOME = "\033[H\033[J"
+HIDE_CURSOR, SHOW_CURSOR = "\033[?25l", "\033[?25h"
 
 
 def percentile(values: list[float], fraction: float) -> float:

@@ -69,6 +69,7 @@ def test_greedy_turns_away_from_food_when_the_food_sits_in_a_dead_end():
         },
         food_distance=3,
         length=10,
+        heading=RIGHT,
     )
     assert greedy_brain(view) == "straight"
 
@@ -85,6 +86,7 @@ def test_greedy_keeps_chasing_food_when_every_move_is_cramped():
         },
         food_distance=2,
         length=20,
+        heading=RIGHT,
     )
     assert greedy_brain(view) == "left"
 
@@ -98,6 +100,7 @@ def test_greedy_still_eats_when_the_food_is_adjacent_and_safe():
         },
         food_distance=1,
         length=5,
+        heading=RIGHT,
     )
     assert greedy_brain(view) == "straight"
 

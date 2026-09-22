@@ -4,11 +4,22 @@ Snake, where every turn is a Jev decision. One `POST /v1/systemone` per tick, fo
 snake stays alive.
 
 ```bash
-export TYPESAFE_API_KEY=...
-jevsnake                      # Jev drives
+jevsnake --brain human        # you drive — no API key needed
 jevsnake --brain greedy       # plain code, no API key needed
 jevsnake --brain random       # the floor
+
+export TYPESAFE_API_KEY=...
+jevsnake                      # Jev drives
 ```
+
+## Play it yourself first
+
+```bash
+jevsnake --brain human
+```
+
+Arrow keys or `wasd` to steer, `q` to quit. Do this before watching any bot play — a score of your
+own is the only baseline that will actually mean something to you.
 
 ## What this is actually demonstrating
 
@@ -30,6 +41,11 @@ validation step because there is nothing to validate.
 
 This is the clearest small example of what typed output buys you: you spend your effort describing
 the options, not defending against the answer.
+
+It protects the player too. In `--brain human`, pressing the key for the direction you came from
+maps to no turn at all, so the snake carries on. That isn't a special case anyone wrote — a reversal
+simply cannot be expressed as one `left` or `right`, so there is nothing to guard against. The same
+constraint that keeps the model honest keeps you from killing yourself with a stray keypress.
 
 ## Who does what
 
@@ -64,6 +80,8 @@ Snake is solvable. The `greedy` brain is about fifteen lines with no model behin
 |---|---|---|---|
 | `greedy` | **61.0** | 89 | 41 |
 | `random` | 0.3 | 2 | 0 |
+| `human` | play it and find out | — | — |
+| `jev` | not yet measured — needs a live API key | — | — |
 
 Run `jevsnake --brain jev --quiet --games 5` and compare. If Jev loses to `greedy`, that is the
 expected result, not a bug — the state we hand it already contains the answer, so the model is being
@@ -89,14 +107,16 @@ See [`jevscan.md`](jevscan.md) for that version.
 ## Options
 
 ```
---brain jev|greedy|random   who drives (default: jev)
---games N                   play N games and report the spread
---quiet                     no board, just results — use this for comparisons
---seed N                    reproducible food placement
---width / --height          board size (default 20x14)
---min-tick SECONDS          hold each drawn frame (default 0.06)
---model NAME                model override (default: jev-latest)
+--brain jev|human|greedy|random   who drives (default: jev)
+--games N                         play N games and report the spread
+--quiet                           no board, just results — use this for comparisons
+--seed N                          reproducible food placement
+--width / --height                board size (default 20x14)
+--min-tick SECONDS                seconds per tick (default 0.14 by hand, 0.06 watching a bot)
+--model NAME                      model override (default: jev-latest)
 ```
+
+`--brain human` needs an interactive terminal, so it refuses to run under `--quiet` or a pipe.
 
 ## Development
 
