@@ -116,7 +116,6 @@ That is the whole point, and it is worth feeling directly rather than being told
 
 What Jev *is* good at is the same shape of decision when the facts are fuzzy and not computable —
 "is this reply rude", "which queue does this ticket belong in", "is this post about the right Jev".
-See [`jevscan.md`](jevscan.md) for that version.
 
 ## What to watch for
 

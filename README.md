@@ -246,21 +246,16 @@ the Vercel AI Gateway, Pydantic AI, and LiteLLM.
 | Path | What it is |
 |---|---|
 | `src/jevsnake/` | **Snake, with Jev choosing every turn** — one decision per tick. Start here. |
-| `src/jevscan/` | Finds posts about Jev in an X account, using Jev to judge which ones count |
-| `docs/jevsnake.md` | How the game works, and why plain code beats it |
-| `docs/jevscan.md` | How the scanner works and how to run it |
+| `docs/jevsnake.md` | How the game works, and what the live runs showed |
 | `docs/*.svg` | The diagrams above, hand-written and animated |
 
-Both examples are small and exist to be read. They show the two halves of the pattern:
+The example is small and exists to be read:
 
 - **`jevsnake`** puts Jev in a real-time control loop and shows you the latency — measured at
   **165 ms per decision, 400 consecutive decisions, zero illegal moves**. It also shows the
   typed-answer trick at its cleanest: the bot picks `left`/`straight`/`right`, so an illegal 180°
   turn is not representable in the answer. It matched a hand-written heuristic move for move, which
   says more about how much we pre-computed for it than about the model — see the docs.
-- **`jevscan`** is the case that actually needs a model: code does the fetching and the thresholds,
-  Jev makes the one judgment code can't — telling posts about *this* Jev apart from posts about
-  the rapper, the YouTuber, and everyone else named Jev.
 
 ```bash
 jevsnake --brain human      # play it yourself — arrow keys, no API key needed
