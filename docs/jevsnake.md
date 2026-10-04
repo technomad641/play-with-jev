@@ -97,6 +97,11 @@ decisions, zero fatal picks, and confidence that never dropped below 0.96.
 What we did **not** measure is Jev's judgment, because we never asked it to judge anything. Snake is
 solvable by arithmetic, and we did the arithmetic ourselves before asking.
 
+A second live run, unseeded and uncapped (`jevsnake --games 3 --quiet`, same day): scores 38, 15 and
+33 (mean 28.7), 1017 decisions, p50 81 ms, p95 161 ms, **3 fatal picks**, 0 API fallbacks. Every game
+ended in the snake hitting itself. That contradicts the clean zero above, so the zero should be read
+as "true for seed 1 over 400 ticks", not as a guarantee. Cause not yet investigated.
+
 For long-run baselines without a tick cap, the offline brains over 25 seeds:
 
 | brain | mean score | best | worst |

@@ -271,6 +271,47 @@ jevsnake                    # Jev drives
 Play a round by hand first. A score of your own is the only baseline that will mean anything when
 you watch the bots.
 
+### Run it
+
+Needs Python 3.10+. If your system Python is older (macOS ships 3.8) and you don't have Homebrew,
+[`uv`](https://docs.astral.sh/uv/) will fetch one:
+
+```bash
+uv python install 3.12
+uv venv --python 3.12 .venv
+uv pip install --python .venv/bin/python -e .
+source .venv/bin/activate
+
+jevsnake --brain greedy --quiet --games 3     # offline check, no API key
+export TYPESAFE_API_KEY=...                   # your key from the TypeSafe console
+jevsnake --seed 1                             # Jev drives
+```
+
+<p align="center">
+  <img src="docs/jevsnake-jev.svg" alt="jevsnake with Jev driving: the HUD shows decision p50 95ms and p95 217ms" width="640"/>
+</p>
+
+The line under the board is the point of the project: **decision p50 / p95**, measured live on every
+tick. These are renderings of real output (seed 1, tick 150), not mock-ups.
+
+<p align="center">
+  <img src="docs/jevsnake-greedy.svg" alt="jevsnake with the plain-code greedy bot driving, for comparison" width="640"/>
+</p>
+
+#### A live run, and what it showed
+
+`jevsnake --games 3 --quiet` against Jev, no seed, on 2026-10-04:
+
+| games | mean score | best | decisions | p50 | p95 | fatal picks | api fallbacks |
+|---|---|---|---|---|---|---|---|
+| 3 | 28.7 | 38 | 1017 | 81 ms | 161 ms | **3** | 0 |
+
+All three games ended with the snake hitting itself, and Jev picked a fatal move 3 times. That is
+worse than the zero fatal picks in the 400-tick seed-1 run in [`docs/jevsnake.md`](docs/jevsnake.md),
+and well below greedy's ~61 mean over 25 seeds. Three games is a small sample and the runs aren't
+like-for-like (different seeds, no tick cap), so treat it as a flag to investigate, not a verdict.
+A seed-1 run to 150 ticks had 0 fatal picks.
+
 ---
 
 <div align="center">
