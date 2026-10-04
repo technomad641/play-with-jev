@@ -253,10 +253,11 @@ the Vercel AI Gateway, Pydantic AI, and LiteLLM.
 
 Both examples are small and exist to be read. They show the two halves of the pattern:
 
-- **`jevsnake`** puts Jev in a real-time control loop and shows you the latency. It also shows the
-  typed-answer trick at its cleanest — the bot picks `left`/`straight`/`right`, so an illegal
-  180° turn is not representable in the answer. Plain code plays it better, and the docs say so;
-  the point is the loop, not the strategy.
+- **`jevsnake`** puts Jev in a real-time control loop and shows you the latency — measured at
+  **165 ms per decision, 400 consecutive decisions, zero illegal moves**. It also shows the
+  typed-answer trick at its cleanest: the bot picks `left`/`straight`/`right`, so an illegal 180°
+  turn is not representable in the answer. It matched a hand-written heuristic move for move, which
+  says more about how much we pre-computed for it than about the model — see the docs.
 - **`jevscan`** is the case that actually needs a model: code does the fetching and the thresholds,
   Jev makes the one judgment code can't — telling posts about *this* Jev apart from posts about
   the rapper, the YouTuber, and everyone else named Jev.

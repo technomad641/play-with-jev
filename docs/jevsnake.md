@@ -70,26 +70,44 @@ trade-off: *take the food, or keep the room?*
 It's one question per tick, not three. Independent questions would run in parallel for one round
 trip, but in a control loop every token costs latency, and latency is what we're showing off.
 
-## Be honest about the result
+## What actually happened when we ran it
 
-**Plain code plays this better than Jev does, and that is fine.**
+Measured against `jev-1.13.0` on 2026-10-04, seed 1, capped at 400 ticks:
 
-Snake is solvable. The `greedy` brain is about fifteen lines with no model behind it:
+| brain | score | outcome | decision p50 | decision p95 | fatal picks |
+|---|---|---|---|---|---|
+| `jev` | **29** | still alive at the cap | 165 ms | 230 ms | **0** |
+| `greedy` | **29** | still alive at the cap | — | — | 0 |
+| `random` | 0 | hit a wall on tick 45 | — | — | — |
 
-| brain | mean score over 25 seeds | best | worst |
+Then we asked Jev to judge 150 positions from one game and compared each answer against what the
+arithmetic would have chosen:
+
+**150 of 150 identical. Zero disagreements. Median confidence 0.97.**
+
+That is a cleaner result than this document originally predicted — it said plain code would beat the
+model. It didn't. Jev reproduced the heuristic exactly, which is why the scores match to the point.
+
+**But read what that actually measures.** We handed Jev `leads_into`, `reachable_cells_after` and
+`gets_closer_to_food` — all pre-computed — and instructions spelling out the policy in words. So the
+answer was already in the input. What we measured is whether the model can apply an explicit rule to
+pre-computed facts, quickly and without ever picking a move labelled `wall`. It can: 400 consecutive
+decisions, zero fatal picks, and confidence that never dropped below 0.96.
+
+What we did **not** measure is Jev's judgment, because we never asked it to judge anything. Snake is
+solvable by arithmetic, and we did the arithmetic ourselves before asking.
+
+For long-run baselines without a tick cap, the offline brains over 25 seeds:
+
+| brain | mean score | best | worst |
 |---|---|---|---|
-| `greedy` | **61.0** | 89 | 41 |
+| `greedy` | 61.0 | 89 | 41 |
 | `random` | 0.3 | 2 | 0 |
 | `human` | play it and find out | — | — |
-| `jev` | not yet measured — needs a live API key | — | — |
 
-Run `jevsnake --brain jev --quiet --games 5` and compare. If Jev loses to `greedy`, that is the
-expected result, not a bug — the state we hand it already contains the answer, so the model is being
-asked to re-derive a conclusion that arithmetic reaches more reliably.
-
-The demo is the **loop and the latency**, not the strategy. Any task where plain code can compute the
-right answer is a task that does not need a model; Snake is one of those, and it is worth feeling
-that directly rather than being told it.
+The demo is the **loop and the latency**, not the strategy. 165 ms per decision is what makes a model
+in a control loop possible at all; an LLM writing `{"move": "left"}` token by token could not keep up.
+That is the whole point, and it is worth feeling directly rather than being told.
 
 What Jev *is* good at is the same shape of decision when the facts are fuzzy and not computable —
 "is this reply rude", "which queue does this ticket belong in", "is this post about the right Jev".
@@ -98,8 +116,8 @@ See [`jevscan.md`](jevscan.md) for that version.
 ## What to watch for
 
 - **`fatal picks`** in the HUD — how often Jev chose a move the state plainly labelled `wall` or
-  `body`. Should be zero. If it isn't, the instructions need sharpening, and that's the real lesson
-  of the project: criteria are the code.
+  `body`. Should be zero, and over 400 consecutive live decisions it was. If it isn't, the
+  instructions need sharpening, and that's the real lesson of the project: criteria are the code.
 - **`api fallbacks`** — ticks where the API failed and the greedy brain covered so the game could
   continue. Non-zero means you're measuring your network, not the model.
 - **p95 vs p50** — the tail is what makes a control loop feel broken.
