@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 410" width="880" height="410" role="img" aria-label="An LLM returns text that your code must strip, parse, validate and retry, and it can return a label you never offered. Jev returns one of your labels, so there is nothing to parse.">
+  <defs>
+    <marker id="d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b949e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="880" height="410" rx="14" fill="#0d1117"/>
+
+  <text x="28" y="38" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="600" fill="#e6edf3">Who has to clean up afterwards</text>
+  <text x="28" y="58" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12.5" fill="#8b949e">Watch the left box change. The right one cannot.</text>
+
+  <!-- ===== LEFT: LLM ===== -->
+  <rect x="20" y="78" width="410" height="278" rx="10" fill="#161b22" stroke="#30363d"/>
+  <text x="40" y="106" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#f0a868">Traditional LLM &#183; text comes back</text>
+  <text x="40" y="125" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#8b949e">you asked for JSON &#8212; you may or may not get it</text>
+
+  <rect x="40" y="140" width="370" height="96" rx="8" fill="#21262d" stroke="#30363d"/>
+
+  <!-- variant A: fine -->
+  <g opacity="1">
+    <rect x="52" y="152" width="94" height="20" rx="10" fill="#12261a" stroke="#3fb950"/>
+    <text x="99" y="166" text-anchor="middle" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#3fb950">OK &#183; parses</text>
+    <text x="52" y="204" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#c9d1d9">{"category": "billing"}</text>
+    <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.3167;0.3333;1" dur="6s" repeatCount="indefinite"/>
+  </g>
+
+  <!-- variant B: prose wrapper -->
+  <g opacity="0">
+    <rect x="52" y="152" width="184" height="20" rx="10" fill="#2b1315" stroke="#f85149"/>
+    <text x="144" y="166" text-anchor="middle" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#f85149">FAIL &#183; prose before the JSON</text>
+    <text x="52" y="196" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#f85149">Sure! Here's the JSON:</text>
+    <text x="52" y="216" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#c9d1d9">{"category": "billing"}</text>
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3167;0.3333;0.65;0.6667;1" dur="6s" repeatCount="indefinite"/>
+  </g>
+
+  <!-- variant C: invented label -->
+  <g opacity="0">
+    <rect x="52" y="152" width="196" height="20" rx="10" fill="#2b1315" stroke="#f85149"/>
+    <text x="150" y="166" text-anchor="middle" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#f85149">FAIL &#183; a label you never offered</text>
+    <text x="52" y="204" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#c9d1d9">{"category": <tspan fill="#f85149">"billing_issue"</tspan>}</text>
+    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.65;0.6667;1" dur="6s" repeatCount="indefinite"/>
+  </g>
+
+  <line x1="225" y1="240" x2="225" y2="262" stroke="#8b949e" stroke-width="1.6" marker-end="url(#d)"/>
+
+  <text x="40" y="282" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#e6edf3">so your code has to</text>
+  <g font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#8b949e">
+    <text x="40" y="300">1. find and strip anything that is not JSON</text>
+    <text x="40" y="318">2. parse it, and handle the parse failing</text>
+    <text x="40" y="336">3. check the label is one you allow, then retry</text>
+  </g>
+
+  <!-- ===== RIGHT: Jev ===== -->
+  <rect x="450" y="78" width="410" height="278" rx="10" fill="#161b22" stroke="#30363d"/>
+  <text x="470" y="106" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#58a6ff">Jev &#183; a typed answer comes back</text>
+  <text x="470" y="125" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#8b949e">the shape is fixed before the model ever runs</text>
+
+  <rect x="470" y="140" width="370" height="96" rx="8" fill="#0f2233" stroke="#58a6ff" stroke-width="1.4"/>
+  <rect x="482" y="152" width="188" height="20" rx="10" fill="#0d2b3e" stroke="#58a6ff"/>
+  <text x="576" y="166" text-anchor="middle" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#58a6ff">always one of your three labels</text>
+  <text x="482" y="196" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#c9d1d9">choice &#8594; <tspan fill="#58a6ff">"billing"</tspan></text>
+  <text x="482" y="216" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#8b949e">confidence &#8594; 0.94</text>
+
+  <line x1="655" y1="240" x2="655" y2="262" stroke="#8b949e" stroke-width="1.6" marker-end="url(#d)"/>
+
+  <text x="470" y="282" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#e6edf3">so your code has to</text>
+  <text x="470" y="302" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#8b949e">1. read the value</text>
+  <text x="470" y="322" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#6e7681">(and decide what counts as confident enough)</text>
+
+  <text x="28" y="390" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e">Fair warning: JSON mode and structured outputs close most of the left-hand gap. What they do not change is that the answer is still written out one piece at a time.</text>
+</svg>
