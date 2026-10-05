@@ -251,11 +251,14 @@ the Vercel AI Gateway, Pydantic AI, and LiteLLM.
 
 The example is small and exists to be read:
 
-- **`jevsnake`** puts Jev in a real-time control loop and shows you the latency — measured at
-  **165 ms per decision, 400 consecutive decisions, zero illegal moves**. It also shows the
-  typed-answer trick at its cleanest: the bot picks `left`/`straight`/`right`, so an illegal 180°
-  turn is not representable in the answer. It matched a hand-written heuristic move for move, which
-  says more about how much we pre-computed for it than about the model — see the docs.
+- **`jevsnake`** puts Jev in a real-time control loop and shows you the latency: **p50 81–165 ms
+  per decision** across two live runs, with **0 API fallbacks**. It also shows the typed-answer trick
+  at its cleanest: the bot picks `left`/`straight`/`right`, so an illegal 180° turn is not
+  representable in the answer. Every one of those moves was legal.
+- **What it does not show (yet):** that Jev plays *well*. In one seed-1 run it matched a hand-written
+  heuristic move for move (0 fatal picks over 400 ticks), but in a later unseeded run it picked a
+  move straight into a wall or its own body 3 times in 3 games and scored 28.7 on average against
+  greedy's ~61. The reason isn't investigated. See [`docs/jevsnake.md`](docs/jevsnake.md).
 
 ```bash
 jevsnake --brain human      # play it yourself — arrow keys, no API key needed
